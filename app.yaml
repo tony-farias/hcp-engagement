@@ -1,0 +1,27 @@
+command:
+  - "python"
+  - "-m"
+  - "http.server"
+  - "8000"
+  - "--directory"
+  - "dist"
+
+env:
+  - name: VITE_GENIE_SPACE_ID_REP
+    value: "01f147ee83391102be3b9937a7ce61bd"
+  - name: VITE_GENIE_SPACE_ID_MSL
+    value: "01f147ee83761484a3a1a5e5dc74a685"
+  - name: VITE_DATABRICKS_HOST
+    value: "https://fe-vm-hls-amer.cloud.databricks.com"
+
+resources:
+  - name: rep_genie_space
+    description: HCP Engagement Rep Genie Space
+    genie_space:
+      space_id: 01f147ee83391102be3b9937a7ce61bd
+      permission: CAN_RUN
+  - name: msl_genie_space
+    description: HCP Engagement MSL Genie Space
+    genie_space:
+      space_id: 01f147ee83761484a3a1a5e5dc74a685
+      permission: CAN_RUN
