@@ -2,6 +2,7 @@ import { useState } from "react";
 import { RepView } from "./components/RepView";
 import { MSLView } from "./components/MSLView";
 import { DataSources } from "./components/DataSources";
+import { SourceViewport } from "./components/SourceViewport";
 
 type Role = "rep" | "msl";
 
@@ -48,6 +49,8 @@ export default function App() {
         </header>
 
         <main>{isRep ? <RepView spaceId={REP_SPACE_ID} /> : <MSLView spaceId={MSL_SPACE_ID} />}</main>
+
+        <SourceViewport />
 
         <DataSources />
 
