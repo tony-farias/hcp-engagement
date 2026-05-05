@@ -15,16 +15,16 @@ export const mslData = {
     timeFrame: "Since March 18, 2026",
     events: [
       "Published 4 first-author papers in 24 months on ATTR-CM diagnostic delay and the carpal-tunnel + HFpEF screening triad",
-      "PI of ACT-EARLY screening sub-study (actively enrolling)",
-      "Sub-investigator on HELIOS-B (follow-up phase)",
+      "PI of Carrier Screening Sub-Study (actively enrolling)",
+      "Sub-investigator on Phase-3 Stabilizer Trial (follow-up phase)",
       "Citation velocity +42% YoY · trajectory: Rising",
     ],
   },
   scientificFootprint: {
     pubs12mo: 4,
-    activeTrials: ["HELIOS-B (sub-I, follow-up)", "ACT-EARLY screening sub-study (PI, enrolling)"],
+    activeTrials: ["Phase-3 Stabilizer Trial (sub-I, follow-up)", "Carrier Screening Sub-Study (PI, enrolling)"],
     abstracts: ["HFSA 2026", "ACC 2026", "ISA Workshop 2025"],
-    coAuthors: ["Mathew Maurer, MD (Columbia)", "Ahmad Masri, MD (OHSU)"],
+    coAuthors: ["Dr. K. Anders, MD (Northeast AMC)", "Dr. R. Patel, MD (Pacific AMC)"],
   },
   emergence: {
     rating: "Rising",
@@ -37,8 +37,8 @@ export const mslData = {
     "Sequencing of stabilizers + silencers",
   ],
   suggestedContent: [
-    "ATTR-CM diagnostic algorithm reprint (Approved Email Medical)",
-    "HELIOS-B 36-month follow-up data deck (Approved Email Medical)",
+    "ATTR-CM diagnostic algorithm reprint",
+    "Phase-3 Stabilizer Trial 36-month follow-up data deck",
     "V122I carrier screening — peer-reviewed reprint",
   ],
 };

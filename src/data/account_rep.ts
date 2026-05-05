@@ -20,9 +20,9 @@ export const repData = {
     suppression: "k-anonymity ≥ 11 enforced",
   },
   competitorCoverage: [
-    { brand: "Pfizer (Vyndaqel/Vyndamax)", spend: "$0", trend: "—", note: "No payments on record" },
-    { brand: "BridgeBio (Attruby)",       spend: "$0", trend: "—", note: "No payments on record" },
-    { brand: "Alnylam (Amvuttra)",        spend: "$0", trend: "—", note: "No payments on record" },
+    { brand: "Manufacturer A — category therapy", spend: "$0", trend: "—", note: "No payments on record" },
+    { brand: "Manufacturer B — category therapy", spend: "$0", trend: "—", note: "No payments on record" },
+    { brand: "Manufacturer C — category therapy", spend: "$0", trend: "—", note: "No payments on record" },
   ],
   practice: {
     coeAffiliation: "Not a CoE — refer to Greenville Memorial (15 min)",
@@ -37,12 +37,12 @@ export const repData = {
     suggestedTopics: [
       "Pattern recognition: carpal-tunnel-plus-HFpEF-plus-low-voltage triad (Witteles JACC HF 2019)",
       "Referral pathway to Greenville Memorial — warm handoff, not cold punt",
-      "Approved Email: ATTR-CM screening algorithm reprint",
+      "Share the ATTR-CM screening algorithm reprint",
     ],
   },
   suggestedContent: [
-    "ATTR-CM diagnostic algorithm reprint (Approved Email)",
-    "Greenville Memorial referral one-pager (Approved Email)",
+    "ATTR-CM diagnostic algorithm reprint",
+    "Greenville Memorial referral one-pager",
     "Pattern-recognition pre-call card",
   ],
 };

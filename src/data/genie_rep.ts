@@ -4,12 +4,12 @@ export type GenieAnswer = {
   sources: string[];
 };
 
-// Fallback canned answers - shown only if the live Genie call fails. Story-aligned.
+// Sample answers shown by default before any interaction. Live answers come from Genie below.
 export const repPrompts: GenieAnswer[] = [
   {
     question: "Why isn't Dr. Whitfield writing?",
     answer:
-      "11 suspect ATTR-CM patients in Carolina Cardiology Associates, average age 78. 4 of 11 have prior carpal tunnel surgery; 100% show low-voltage ECG. No PYP order in the last 540 days (about 18 months); the practice is not PYP-capable. CMS Open Payments shows Pfizer $0, BridgeBio $0, Alnylam $0 — Whitfield is invisible to the cardiac amyloidosis category. Next move: pattern-recognition pre-call followed by a warm handoff to Greenville Memorial Heart & Vascular Institute, 15 minutes away, PYP-capable, 3 specialists.",
+      "11 suspect ATTR-CM patients in Carolina Cardiology Associates, average age 78. 4 of 11 have prior carpal tunnel surgery; 100% show low-voltage ECG. No PYP order in the last 540 days (about 18 months); the practice is not PYP-capable. CMS Open Payments shows Manufacturer A $0, Manufacturer B $0, Manufacturer C $0 — Whitfield is invisible to the cardiac amyloidosis category. Next move: pattern-recognition pre-call followed by a warm handoff to Greenville Memorial Heart & Vascular Institute, 15 minutes away, PYP-capable, 3 specialists.",
     sources: ["Suspect-Patient Model", "CMS Open Payments", "NPPES", "hospital programs", "practice referral map"],
   },
   {
@@ -21,7 +21,7 @@ export const repPrompts: GenieAnswer[] = [
   {
     question: "Has Whitfield received any payments from competitors?",
     answer:
-      "No. CMS Open Payments shows Pfizer $0, BridgeBio $0, Alnylam $0 in the last 12 months. No engagement on record from any cardiac amyloidosis manufacturer — opportunity for category education.",
+      "No. CMS Open Payments shows Manufacturer A $0, Manufacturer B $0, Manufacturer C $0 in the last 12 months. No engagement on record from any cardiac amyloidosis manufacturer — opportunity for category education.",
     sources: ["CMS Open Payments (Sunshine Act)"],
   },
   {
@@ -31,4 +31,3 @@ export const repPrompts: GenieAnswer[] = [
     sources: ["Suspect-Patient Model (HCP rollup)"],
   },
 ];
-

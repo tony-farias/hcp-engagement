@@ -54,11 +54,8 @@ export function MSLView({ spaceId }: { spaceId: string }) {
       <Panel title="Suggested Content" accent="slate">
         <ul className="text-sm space-y-1.5">
           {mslData.suggestedContent.map((c) => (
-            <li key={c} className="flex items-center justify-between bg-slate-50 rounded px-3 py-2">
-              <span>{c}</span>
-              <button className="text-[10px] uppercase tracking-wider text-databricks-mint font-semibold hover:underline">
-                Share
-              </button>
+            <li key={c} className="bg-slate-50 rounded px-3 py-2">
+              {c}
             </li>
           ))}
         </ul>
