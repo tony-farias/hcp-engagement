@@ -4,6 +4,7 @@ import type { GenieAnswer } from "../data/genie_rep";
 declare global {
   interface Window {
     __DATABRICKS_HOST__?: string;
+    __DATABRICKS_WORKSPACE_ID__?: string;
     __GENIE_SPACE_ID_REP__?: string;
     __GENIE_SPACE_ID_MSL__?: string;
   }
@@ -13,6 +14,11 @@ const DATABRICKS_HOST =
   (typeof window !== "undefined" && window.__DATABRICKS_HOST__) ||
   (import.meta.env.VITE_DATABRICKS_HOST as string | undefined) ||
   "https://fe-vm-hls-amer.cloud.databricks.com";
+
+const DATABRICKS_WORKSPACE_ID =
+  (typeof window !== "undefined" && window.__DATABRICKS_WORKSPACE_ID__) ||
+  (import.meta.env.VITE_DATABRICKS_WORKSPACE_ID as string | undefined) ||
+  "1602460480284688";
 
 type Mode = "sample" | "iframe";
 
@@ -33,15 +39,20 @@ export function GenieAskBox({
   const accent = variant === "rep" ? "ring-databricks-orange/40" : "ring-databricks-navy/40";
   const dot = variant === "rep" ? "bg-databricks-orange" : "bg-databricks-navy";
 
-  const baseGenieUrl = spaceId ? `${DATABRICKS_HOST}/genie/rooms/${spaceId}` : "";
-  const genieIframeUrl = baseGenieUrl
-    ? iframeQuery
-      ? `${baseGenieUrl}?q=${encodeURIComponent(iframeQuery)}`
-      : baseGenieUrl
+  const directBase = spaceId ? `${DATABRICKS_HOST}/genie/rooms/${spaceId}` : "";
+  const embedBase = spaceId
+    ? `${DATABRICKS_HOST}/embed/genie/rooms/${spaceId}?o=${DATABRICKS_WORKSPACE_ID}`
     : "";
-  const genieDirectUrl = iframeQuery
-    ? `${baseGenieUrl}?q=${encodeURIComponent(iframeQuery)}`
-    : baseGenieUrl;
+  const genieIframeUrl = embedBase
+    ? iframeQuery
+      ? `${embedBase}&q=${encodeURIComponent(iframeQuery)}`
+      : embedBase
+    : "";
+  const genieDirectUrl = directBase
+    ? iframeQuery
+      ? `${directBase}?q=${encodeURIComponent(iframeQuery)}`
+      : directBase
+    : "";
 
   const ask = (q: GenieAnswer) => {
     setInput(q.question);
@@ -121,7 +132,8 @@ export function GenieAskBox({
               src={genieIframeUrl}
               title="Databricks Genie"
               className="w-full"
-              style={{ height: 520, border: "none" }}
+              style={{ height: 600, border: "none" }}
+              allow="clipboard-write"
               sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
             />
             <div className="px-3 py-2 bg-slate-50 text-[10px] text-slate-500 border-t border-slate-200 flex items-center justify-between">
