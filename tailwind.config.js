@@ -5,11 +5,15 @@ export default {
     extend: {
       colors: {
         databricks: {
-          orange: "#FF3621",
-          navy: "#1B3139",
+          orange: "#E27124",
+          orangeLight: "#F4A537",
+          orangeDeep: "#DD6E1E",
+          navy: "#1F2A44",
           slate: "#445969",
           mint: "#00A972",
           sand: "#F9F7F4",
+          blue: "#2D6FE0",
+          bg: "#F4F5F8",
         },
         veeva: {
           blue: "#0066B2",

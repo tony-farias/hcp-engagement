@@ -28,33 +28,52 @@ export default function App() {
   const footerStatus = isRep ? "Commercial governed view" : "Medical governed view";
 
   return (
-    <div className="min-h-screen flex flex-col items-center py-8 px-4 sm:px-6">
-      <div className="w-full max-w-6xl space-y-6">
-        <header className="bg-white rounded-xl border border-slate-200 shadow-sm px-5 py-4">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div>
-              <div className="text-[11px] uppercase tracking-[0.2em] text-databricks-orange font-semibold">
-                Databricks · Life Sciences
-              </div>
-              <h1 className="text-xl sm:text-2xl font-semibold text-databricks-navy">
-                HCP Engagement Demo — Public Data → Patient Targeting
-              </h1>
-              <p className="text-sm text-slate-500 mt-1">Same lakehouse, two governed views.</p>
-            </div>
-            <RoleToggle role={role} setRole={setRole} />
+    <div className="min-h-screen flex flex-col bg-databricks-bg">
+      {/* Brand bar — orange gradient header */}
+      <div className="bg-gradient-to-r from-databricks-orangeLight to-databricks-orangeDeep text-white">
+        <div className="max-w-6xl mx-auto px-6 py-5 flex items-start sm:items-center justify-between gap-4 flex-col sm:flex-row">
+          <div>
+            <h1 className="text-xl sm:text-2xl font-semibold leading-snug">
+              HCP Engagement Demo — Public Data → Patient Targeting
+            </h1>
+            <p className="text-sm opacity-90 mt-0.5">
+              Same Databricks lakehouse, two compliantly governed views.
+            </p>
           </div>
-          <div className="mt-3 pt-3 border-t border-slate-100">
-            <p className="text-xs text-slate-500 leading-relaxed">{subtitle}</p>
+          <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm px-3 py-1.5 rounded-md text-[11px] font-semibold">
+            <span className="w-1.5 h-1.5 rounded-full bg-databricks-mint" />
+            <span>Lakehouse Connected</span>
           </div>
-        </header>
+        </div>
+      </div>
 
+      {/* Nav strip — dark navy with tab-style persona toggle */}
+      <div className="bg-databricks-navy text-white">
+        <div className="max-w-6xl mx-auto px-6 flex items-center">
+          <NavTab active={isRep} onClick={() => setRole("rep")} label="Sales Rep" />
+          <NavTab active={!isRep} onClick={() => setRole("msl")} label="MSL" />
+          <div className="ml-auto text-[10px] uppercase tracking-wider opacity-70 hidden sm:block">
+            Persona toggle · Unity Catalog rebinds the governed view
+          </div>
+        </div>
+      </div>
+
+      {/* Subtitle */}
+      <div className="bg-white border-b border-slate-200">
+        <div className="max-w-6xl mx-auto px-6 py-3">
+          <p className="text-xs text-slate-600 leading-relaxed">{subtitle}</p>
+        </div>
+      </div>
+
+      {/* Main content */}
+      <div className="flex-1 max-w-6xl mx-auto w-full px-4 sm:px-6 py-6 space-y-6">
         <main>{isRep ? <RepView spaceId={REP_SPACE_ID} /> : <MSLView spaceId={MSL_SPACE_ID} />}</main>
 
         <SourceViewport variant={role} />
 
         <DataSources />
 
-        <footer className="bg-white rounded-xl border border-slate-200 shadow-sm px-5 py-3 text-[11px] text-slate-500 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <footer className="bg-white rounded-lg border border-slate-200 px-5 py-3 text-[11px] text-slate-500 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <div>
             <span className="font-semibold text-databricks-navy">Compliance envelope:</span> {footerScope}
           </div>
@@ -68,25 +87,17 @@ export default function App() {
   );
 }
 
-function RoleToggle({ role, setRole }: { role: Role; setRole: (r: Role) => void }) {
+function NavTab({ active, onClick, label }: { active: boolean; onClick: () => void; label: string }) {
   return (
-    <div className="bg-slate-50 rounded-full border border-slate-200 p-1 flex shrink-0 self-start sm:self-auto">
-      <button
-        onClick={() => setRole("rep")}
-        className={`px-4 py-1.5 rounded-full text-sm font-medium transition ${
-          role === "rep" ? "bg-databricks-orange text-white shadow" : "text-slate-500 hover:text-databricks-navy"
-        }`}
-      >
-        Sales Rep
-      </button>
-      <button
-        onClick={() => setRole("msl")}
-        className={`px-4 py-1.5 rounded-full text-sm font-medium transition ${
-          role === "msl" ? "bg-databricks-navy text-white shadow" : "text-slate-500 hover:text-databricks-navy"
-        }`}
-      >
-        MSL
-      </button>
-    </div>
+    <button
+      onClick={onClick}
+      className={`px-5 py-3 text-sm font-semibold transition border-b-2 -mb-px ${
+        active
+          ? "border-databricks-blue text-white"
+          : "border-transparent text-white/70 hover:text-white"
+      }`}
+    >
+      {label}
+    </button>
   );
 }
