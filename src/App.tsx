@@ -50,7 +50,7 @@ export default function App() {
 
         <main>{isRep ? <RepView spaceId={REP_SPACE_ID} /> : <MSLView spaceId={MSL_SPACE_ID} />}</main>
 
-        <SourceViewport />
+        <SourceViewport variant={role} />
 
         <DataSources />
 
