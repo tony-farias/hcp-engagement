@@ -47,11 +47,10 @@ export default function App() {
         </div>
       </div>
 
-      {/* Nav strip — dark navy with tab-style persona toggle */}
+      {/* Nav strip — dark navy with pill-style persona toggle */}
       <div className="bg-databricks-navy text-white">
-        <div className="max-w-6xl mx-auto px-6 flex items-center">
-          <NavTab active={isRep} onClick={() => setRole("rep")} label="Sales Rep" />
-          <NavTab active={!isRep} onClick={() => setRole("msl")} label="MSL" />
+        <div className="max-w-6xl mx-auto px-6 py-3 flex items-center gap-4">
+          <RoleToggle role={role} setRole={setRole} />
           <div className="ml-auto text-[10px] uppercase tracking-wider opacity-70 hidden sm:block">
             Persona toggle · Unity Catalog rebinds the governed view
           </div>
@@ -87,17 +86,29 @@ export default function App() {
   );
 }
 
-function NavTab({ active, onClick, label }: { active: boolean; onClick: () => void; label: string }) {
+function RoleToggle({ role, setRole }: { role: Role; setRole: (r: Role) => void }) {
   return (
-    <button
-      onClick={onClick}
-      className={`px-5 py-3 text-sm font-semibold transition border-b-2 -mb-px ${
-        active
-          ? "border-databricks-blue text-white"
-          : "border-transparent text-white/70 hover:text-white"
-      }`}
-    >
-      {label}
-    </button>
+    <div className="bg-white/10 rounded-full border border-white/20 p-1 flex shrink-0 backdrop-blur-sm">
+      <button
+        onClick={() => setRole("rep")}
+        className={`px-5 py-1.5 rounded-full text-sm font-semibold transition ${
+          role === "rep"
+            ? "bg-databricks-orange text-white shadow-md"
+            : "text-white/70 hover:text-white"
+        }`}
+      >
+        Sales Rep
+      </button>
+      <button
+        onClick={() => setRole("msl")}
+        className={`px-5 py-1.5 rounded-full text-sm font-semibold transition ${
+          role === "msl"
+            ? "bg-databricks-blue text-white shadow-md"
+            : "text-white/70 hover:text-white"
+        }`}
+      >
+        MSL
+      </button>
+    </div>
   );
 }
