@@ -47,20 +47,11 @@ export default function App() {
         </div>
       </div>
 
-      {/* Nav strip — dark navy with pill-style persona toggle */}
-      <div className="bg-databricks-navy text-white">
-        <div className="max-w-6xl mx-auto px-6 py-3 flex items-center gap-4">
-          <RoleToggle role={role} setRole={setRole} />
-          <div className="ml-auto text-[10px] uppercase tracking-wider opacity-70 hidden sm:block">
-            Persona toggle · Unity Catalog rebinds the governed view
-          </div>
-        </div>
-      </div>
-
-      {/* Subtitle */}
+      {/* Sub-bar — subtitle on left, original light pill toggle on right */}
       <div className="bg-white border-b border-slate-200">
-        <div className="max-w-6xl mx-auto px-6 py-3">
-          <p className="text-xs text-slate-600 leading-relaxed">{subtitle}</p>
+        <div className="max-w-6xl mx-auto px-6 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <p className="text-xs text-slate-600 leading-relaxed flex-1">{subtitle}</p>
+          <RoleToggle role={role} setRole={setRole} />
         </div>
       </div>
 
@@ -88,23 +79,23 @@ export default function App() {
 
 function RoleToggle({ role, setRole }: { role: Role; setRole: (r: Role) => void }) {
   return (
-    <div className="bg-white/10 rounded-full border border-white/20 p-1 flex shrink-0 backdrop-blur-sm">
+    <div className="bg-slate-50 rounded-full border border-slate-200 p-1 flex shrink-0 self-start sm:self-auto">
       <button
         onClick={() => setRole("rep")}
-        className={`px-5 py-1.5 rounded-full text-sm font-semibold transition ${
+        className={`px-4 py-1.5 rounded-full text-sm font-medium transition ${
           role === "rep"
-            ? "bg-databricks-orange text-white shadow-md"
-            : "text-white/70 hover:text-white"
+            ? "bg-databricks-orange text-white shadow"
+            : "text-slate-500 hover:text-databricks-navy"
         }`}
       >
         Sales Rep
       </button>
       <button
         onClick={() => setRole("msl")}
-        className={`px-5 py-1.5 rounded-full text-sm font-semibold transition ${
+        className={`px-4 py-1.5 rounded-full text-sm font-medium transition ${
           role === "msl"
-            ? "bg-databricks-blue text-white shadow-md"
-            : "text-white/70 hover:text-white"
+            ? "bg-databricks-navy text-white shadow"
+            : "text-slate-500 hover:text-databricks-navy"
         }`}
       >
         MSL
