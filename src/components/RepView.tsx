@@ -9,6 +9,42 @@ export function RepView({ spaceId }: { spaceId: string }) {
     <div className="space-y-3">
       <GenieAskBox prompts={repPrompts} variant="rep" spaceId={spaceId} />
 
+      <Panel title="Pre-Call Brief" accent="mint">
+        <div className="text-[11px] text-slate-500 mb-1">Last interaction</div>
+        <div className="text-sm mb-3">{repData.preCallBrief.lastInteraction}</div>
+        <div className="text-[11px] text-slate-500 mb-1">Suggested talking points</div>
+        <ul className="text-sm space-y-1">
+          {repData.preCallBrief.suggestedTopics.map((t) => (
+            <li key={t} className="flex gap-2">
+              <span className="text-databricks-orange">●</span>
+              <span>{t}</span>
+            </li>
+          ))}
+        </ul>
+      </Panel>
+
+      <Panel title="Suggested Content" accent="slate">
+        <ul className="text-sm space-y-1.5">
+          {repData.suggestedContent.map((c) => (
+            <li key={c} className="bg-slate-50 rounded px-3 py-2">
+              {c}
+            </li>
+          ))}
+        </ul>
+      </Panel>
+
+      <Panel title="Practice Context · Referral Pathway" accent="navy">
+        <div className="grid grid-cols-2 gap-2">
+          <Row label="CoE affiliation" value={repData.practice.coeAffiliation} />
+          <Row label="PYP-capable on site" value={repData.practice.pypCapable ? "Yes · onsite" : "No"} />
+          <Row label="Cardiologists in practice" value={String(repData.practice.cardiologists)} />
+          <Row
+            label="Nearest CoE"
+            value={`${repData.practice.nearestCoE} · ${repData.practice.nearestCoEDistanceMin} min · ${repData.practice.nearestCoESpecialists} specialists`}
+          />
+        </div>
+      </Panel>
+
       <HeroPanel
         eyebrow="Suspect Patient Signal · HCP-aggregate"
         title={`${s.count} suspect ATTR-CM patients in this practice`}
@@ -36,39 +72,6 @@ export function RepView({ spaceId }: { spaceId: string }) {
             </div>
           ))}
         </div>
-      </Panel>
-
-      <Panel title="Practice Context · Referral Pathway" accent="navy">
-        <div className="grid grid-cols-2 gap-2">
-          <Row label="CoE affiliation" value={repData.practice.coeAffiliation} />
-          <Row label="PYP-capable on site" value={repData.practice.pypCapable ? "Yes · onsite" : "No"} />
-          <Row label="Cardiologists in practice" value={String(repData.practice.cardiologists)} />
-          <Row label="Nearest CoE" value={`${repData.practice.nearestCoE} · ${repData.practice.nearestCoEDistanceMin} min · ${repData.practice.nearestCoESpecialists} specialists`} />
-        </div>
-      </Panel>
-
-      <Panel title="Pre-Call Brief" accent="mint">
-        <div className="text-[11px] text-slate-500 mb-1">Last interaction</div>
-        <div className="text-sm mb-3">{repData.preCallBrief.lastInteraction}</div>
-        <div className="text-[11px] text-slate-500 mb-1">Suggested talking points</div>
-        <ul className="text-sm space-y-1">
-          {repData.preCallBrief.suggestedTopics.map((t) => (
-            <li key={t} className="flex gap-2">
-              <span className="text-databricks-orange">●</span>
-              <span>{t}</span>
-            </li>
-          ))}
-        </ul>
-      </Panel>
-
-      <Panel title="Suggested Content" accent="slate">
-        <ul className="text-sm space-y-1.5">
-          {repData.suggestedContent.map((c) => (
-            <li key={c} className="bg-slate-50 rounded px-3 py-2">
-              {c}
-            </li>
-          ))}
-        </ul>
       </Panel>
     </div>
   );

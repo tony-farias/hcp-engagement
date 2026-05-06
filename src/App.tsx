@@ -34,7 +34,7 @@ export default function App() {
         <div className="max-w-6xl mx-auto px-6 py-5 flex items-start sm:items-center justify-between gap-4 flex-col sm:flex-row">
           <div>
             <h1 className="text-xl sm:text-2xl font-semibold leading-snug">
-              HCP Engagement Demo — Public Data → Patient Targeting
+              ATTR-CM Sales Intelligence
             </h1>
             <p className="text-sm opacity-90 mt-0.5">
               Same Databricks lakehouse, two compliantly governed views.
